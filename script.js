@@ -131,3 +131,9 @@ function setupFilters(){
         applyFilters();
     });
 }
+if (document.getElementById('admin-container')){
+    handleAddFleet();
+    handleCardActions();
+    setupFilters();
+    renderFleetCards(fleetData);
+}
