@@ -110,3 +110,24 @@ function applyFilters() {
     }
     renderFleetCards(filteredData);
 }
+
+function setupFilters(){
+
+    const categoryFilterSelect = document.getElementById('category-filter');
+    const availabilityFilterSelect = document.getElementById('availability-filter');
+    const clearFilterBtn = document.getElementById('clear-filter-btn')
+    const uniqueCategories = [...new Set(fleetData.map( f => f.category))];
+    uniqueCategories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        categoryFilterSelect.appendChild(option);
+    });
+    categoryFilterSelect.addEventListener('change',applyFilters);
+    availabilityFilterSelect.addEventListener('change', applyFilters);
+    clearFilterBtn.addEventListener('click', ()=>{
+        categoryFilterSelect.value = 'All';
+        availabilityFilterSelect.value = 'All';
+        applyFilters();
+    });
+}
