@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Management app</title>
+    <style>
+        .error-text { color : red; display: none; }
+        div { padding: 20px; border: 1px solid #ccc; max-width: 400px; margin: 50px auto; }
+        input, button {display: block; margin: 10px 0; padding:8px; width:100%; box-sizing: border-box;}
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Login Page</h2>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <p id="error-message" class="error-text">Wrong Email or Password</p>
+            <button type="submit">login</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
