@@ -68,4 +68,45 @@ function handleAddFleet() {
         })
     }
 }
-
+function updateAndRender() {
+    applyFilters();
+}
+ function handleCardActions(){
+    if(!cardContainer) return;
+    cardContainer.addEventListener('click', (e) => {
+        const target=e.target;
+        const regNo=target.gatAttribute('data-regno');
+        if(!regNo) return;
+        const vehicle = fleetData.find(f => f.regNo === regNo);
+        if(!vehicle) return;
+        if (target.classList.contains('change-availability-btn')) {
+            const currentStatus = vehicle.availabilty;
+            const newStatus = currentStatus === 'Available' ? 'Unavailable' : 'Available';
+            vehicle.availabilty = newStatus;
+            alert(`Availability for ${regNo} changed to ${newStatus}`);
+            updateAndRender();
+        }
+        if(target.classList.contains('delete-vehicle-btn')){
+            if (confirm(`Are you sure you want to delete ${regNo}`)){
+                fleetData = fleetData.filter(f => f.regNo !== regNo);
+                alert(`Vehicle ${regNo} deleted.`);
+                updateAndRender();
+            }
+        }
+    });
+ }
+function applyFilters() {
+    const categoryFilter = document.getElementById('category-filter');
+    const availabilityFilter = document.getElementById('availability-filter');
+    if (!categoryFilter || !availabilityFilter) return;
+    const selectedCategory = categoryFilter.value;
+    const selectAvailability = availabilityFilter.value;
+    let filteredData = fleetData;
+    if(selectedCategory !== 'All'){
+        filteredData = filteredData.filter(f => f.category ===selectedCategory);
+    }
+    if (selectAvailability !== 'All'){
+        filteredData = filteredData.filter(f => f.availabilty === selectAvailability);
+    }
+    renderFleetCards(filteredData);
+}
