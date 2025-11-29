@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        #admin-container { display: flex; }
+        #sidebar{ width: 300px; padding: 20px; border-right: 1px solid #ccc;}
+        #main content { flex-grow: 1; padding: 20px;}
+        #navbar { margin-bottom: 20px; padding: 10px; border-bottom: 1px solid #eee;}
+        #fleet-cards-container{ display: grid; grid-template-columns: repeat(auto-fill,minmax(280px, 1fr)); gap: 20px; }
+        .fleet-card{ border:1px solid #ddd; padding: 15px; margin-bottom: 10px; }
+        .fleet-card img{ width: 100%; height: auto; max-height: 150px; }
+        .unavailable {background-color: #fff; }
+        button{margin-right: 5px; }
+    </style>
+</head>
+<body>
+    <div id="admin-container">
+        <aside id="sidebar">
+            <h3>Add Fleet Item</h3>
+            <form id="fleet-form">
+                <input type="text" id="regNo" placeholder="Reg No of Vehicle" required>
+                <input type="text" id="driverName" placeholder="Driver Name" required>
+                <select id="category" required>
+                    <option value="">Select Category</option>
+                    <option value="Auto">Auto</option>
+                    <option value="Car">Car</option>
+                    <option value="Bus">Bus</option>
+                </select>
+                <select id="availability" required>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                </select>
+                <input type="url" id="imageLink" placeholder="Image URL" required>
+                <button type="Submit">Add Fleet</button>
+            </form>
+        </aside>
+        <main id="main-content">
+            <nav id="navbar">
+                <lable for="category-filter">Category:</lable>
+                <select id="category-filter">
+                    <option value="All">All Categories</option>
+                </select>
+                <lable for="availability-filter">Availability:</lable>
+                <select id="availability-filter">
+                    <option value="All">All availability</option>
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                </select>
+                <button id="clear-filter-btn">Clear Filter</button>
+            </nav>
+            <section id="fleet-cards-container">
+                </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
